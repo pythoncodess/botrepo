@@ -21,7 +21,7 @@ async def on_ready():
 	print('--------')
 	print('--------')
 	print('Started Master') #add_your_bot_name_here
-	return await client.change_presence(game=discord.Game(name='Master || m!help ')) #add_your_bot_status_here
+	return await client.change_presence(game=discord.Game(name='Master play V2 || m!help ')) #add_your_bot_status_here
 
 def is_owner(ctx):
     return ctx.message.author.id == "429301779981795338" #replace_it_with_your_discord_id

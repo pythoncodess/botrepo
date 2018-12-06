@@ -880,7 +880,7 @@ async def github(ctx, *, msg = None):
 @client.command(pass_context = True)
 async def reactionroles(ctx, *, msg = None):
     if '@here' in msg or '@everyone' in msg:
-      return
+      return it
     if not msg: await client.say("Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ")
     else: await client.say('Check this video to setup YAGPDB BOT- https://www.youtube.com/watch?v=icAqiw6txRQ ' + msg)
     return
@@ -1037,4 +1037,7 @@ async def embed(ctx, *args):
       await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
       await client.delete_message(ctx.message)    
 
-client.run(os.getenv('NTE5OTY0NTUxNDc1NjI2MDE3.DupW4w.Kv0v1HdrHC5Ra4zyseC2Zh1HeXw
+client.run(os.getenv(Token)
+	  
+	   
+	

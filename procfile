@@ -1,1 +1,1 @@
-worker: python master.py
+worker: python masterbot.py

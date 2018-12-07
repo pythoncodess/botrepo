@@ -595,3 +595,4 @@ async def on_member_remove(member):
 		
 
 client.run(os.getenv('Token'))
+			

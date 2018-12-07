@@ -267,9 +267,15 @@ async def friend(ctx, user:discord.Member,):
 async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Bot Name- Master play V2", color=0x00ff00)
     embed.set_footer(text="MASTER")
-    embed.set_author(name=" Bot Owner Name- Master joker,"429301779981795338)
+    embed.set_author(name="Bot Owner Name: Master joker \n ID: 429301779981795338")
     embed.add_field(name="Site- coming soon...", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
+
+
+
+
+
+
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)

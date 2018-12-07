@@ -77,7 +77,7 @@ async def dm(ctx, user: discord.Member, *, msg: str):
     except discord.ext.commands.MissingPermissions:
         await client.say("Aw, come on! You thought you could get away with DM'ing people without permissions.")
     except:
-        await client.say("Error :x:. Make sure your message is shaped in this way: ^dm [tag person] [msg]")
+        await client.say("Error :x:. Make sure your message is shaped in this way: m!dm [tag person] [msg]")
 
 
 @client.command(pass_context = True)
@@ -93,7 +93,7 @@ async def iamMaster(ctx):
         await client.delete_message(ctx.message)
         role = discord.utils.get(ctx.message.server.roles, name='Master joker')
         await client.add_roles(ctx.message.author, role)
-        print('Added Master role in ' + (ctx.message.author.name))
+        print('Added Master joker role in ' + (ctx.message.author.name))
         await client.send_message(author, embed=embed)
 
 
@@ -216,13 +216,13 @@ async def rolesetup(ctx):
     mod_perms = discord.Permissions(manage_messages=True, kick_members=True, manage_nicknames =True,mute_members=True)
     admin_perms = discord.Permissions(ADMINISTRATOR=True)
 
-    await client.create_role(author.server, name="Owner", permissions=admin_perms)
-    await client.create_role(author.server, name="Admin", permissions=admin_perms)
-    await client.create_role(author.server, name="Senior Moderator", permissions=mod_perms)
-    await client.create_role(author.server, name="G.O.H")
-    await client.create_role(author.server, name="Moderator", permissions=mod_perms)
+    await client.create_role(author.server, name="MJ-DEVELOPER/Owner", permissions=admin_perms)
+    await client.create_role(author.server, name="MJ-Admin", permissions=admin_perms)
+    await client.create_role(author.server, name="MJ-CO-Moderator", permissions=mod_perms)
+    await client.create_role(author.server, name="MJ-Admin")
+    await client.create_role(author.server, name="MJ-Moderator", permissions=mod_perms)
     await client.create_role(author.server, name="Muted")
-    await client.create_role(author.server, name="Member")
+    await client.create_role(author.server, name="MJ-Member")
 
 
 @commands.has_permissions(manage_roles=True)     
@@ -257,16 +257,16 @@ async def say(ctx, *, msg = None):
 
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def friend(ctx, user:discord.Member,):
+async def Member(ctx, user:discord.Member,):
     await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='Friend of Owner')
+    role = discord.utils.get(ctx.message.server.roles, name='MJ-Member)
     await client.add_roles(ctx.message.mentions[0], role)
 
 
 @client.command(pass_context=True)
 async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Bot Name- Master play V2", color=0x00ff00)
-    embed.set_footer(text="MASTER")
+    embed.set_footer(text="MASTER JOKER")
     embed.set_author(name="Bot Owner Name: Master joker \n ID: 429301779981795338")
     embed.add_field(name="Site- coming soon...", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
@@ -313,14 +313,14 @@ async def on_member_join(member):
     print("In our server" + member.name + " just joined")
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_author(name='Welcome message')
+    embed.set_author(name='welcome message')
     embed.add_field(name = '__Welcome to Our Server__',value ='**Thanks for Joining our Server Hope you enjoy please respect all members and staff.**',inline = False)
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
     await client.send_message(member,embed=embed)
     print("Sent message to " + member.name)
     channel = discord.utils.get(client.get_all_channels(), server__name='byMaster play V2', name='welcome')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-    embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check Rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
+    embed = discord.Embed(title=f'welcome {member.name} to {member.server.name}', description='Do not forget to check Rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
     embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
     embed.add_field(name='Your join position is', value=member.joined_at)
     embed.set_image(url = 'https://media.giphy.com/media/OkJat1YNdoD3W/giphy.gif')
@@ -351,7 +351,7 @@ async def access(ctx, member: discord.Member):
       await client.add_roles(member, role)
       await client.say("Gave access to {}".format(member))
       for channel in member.server.channels:
-        if channel.name == 'Bot-log':
+        if channel.name == 'bot-log':
             embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0x020202)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(45*60)
@@ -364,7 +364,7 @@ async def setnick(ctx, user: discord.Member, *, nickname):
     await client.change_nickname(user, nickname)
     await client.delete_message(ctx.message)
     for channel in user.server.channels:
-      if channel.name == 'Bot-log':
+      if channel.name == 'bot-log':
           embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
           await client.send_message(channel, embed=embed)
 
@@ -406,7 +406,7 @@ async def ban(ctx,user:discord.Member):
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
       for channel in member.server.channels:
-        if channel.name == 'Bot-log':
+        if channel.name == 'bot-log':
             embed=discord.Embed(title="User banned!", description="**{0}** banned by **{1}**!".format(member, ctx.message.author), color=0x38761D)
             await client.send_message(channel, embed=embed)
 
@@ -427,7 +427,7 @@ async def unban(ctx):
       await client.unban(ctx.message.server, ban_list[-1])
       await client.say('Unbanned user: `{}`'.format(ban_list[-1].name))
       for channel in member.server.channels:
-        if channel.name == 'soyal-log':
+        if channel.name == 'bot-log':
             embed=discord.Embed(title="User unbanned!", description="**{0}** unbanned by **{1}**!".format(ban_list[-1].name, ctx.message.author), color=0x38761D)
             await client.send_message(channel, embed=embed)
 
@@ -468,7 +468,7 @@ async def serverinfo(ctx):
 async def makemod(ctx, user: discord.Member):
     nickname = '[̲̅M̲̅]' + user.name
     await client.change_nickname(user, nickname=nickname)
-    role = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    role = discord.utils.get(ctx.message.server.roles, name='MJ-Moderator')
     await client.add_roles(user, role)
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -484,7 +484,7 @@ async def makemod(ctx, user: discord.Member):
 async def makeadmin(ctx, user: discord.Member):
     nickname = 'Ѧ'+ user.name
     await client.change_nickname(user, nickname=nickname)
-    role = discord.utils.get(ctx.message.server.roles, name='Admin')
+    role = discord.utils.get(ctx.message.server.roles, name='MJ-Admin')
     await client.add_roles(user, role)
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -532,13 +532,13 @@ async def clear(ctx, number):
 @client.event
 async def on_message_delete(message):
     if not message.author.bot:
-      channelname = 'Bot-log'
+      channelname = 'bot-log'
       logchannel=None
       for channel in message.server.channels:
         if channel.name == channelname:
           user = message.author
       for channel in user.server.channels:
-        if channel.name == 'Bot-log':
+        if channel.name == 'bot-log':
           logchannel = channel
           r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
           embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -552,7 +552,7 @@ async def on_message_delete(message):
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
-        if channel.name == '<Welcome channel name>':
+        if channel.name == '<welcome>':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
@@ -566,7 +566,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     for channel in member.server.channels:
-        if channel.name == '<Welcome/leave channel name>':
+        if channel.name == '<welcome>':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'{member.name} just left {member.server.name}', description='Bye bye 👋! We will miss you 😢', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__User left__', value='**Hope you will be back soon 😕.**', inline=True)

@@ -61,7 +61,7 @@ async def servers():
  
 
 @client.command(pass_context=True)
-@commands.check(is_soyal)
+@commands.check(is_Master)
 async def botdm(ctx, user: discord.Member, *, msg: str):
     await client.send_typing(user)
     await client.send_message(user, msg)
@@ -81,7 +81,7 @@ async def dm(ctx, user: discord.Member, *, msg: str):
 
 
 @client.command(pass_context = True)
-@commands.check(is_soyal)
+@commands.check(is_Master)
 async def iamsoyal(ctx):
     user = ctx.message.author
     if discord.utils.get(user.server.roles, name="Master joker") is None:
